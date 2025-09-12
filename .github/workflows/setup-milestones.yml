@@ -1,0 +1,27 @@
+name: Setup Weekly Milestones (Weeks 1–16)
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: 'Start date for Week 1 (YYYY-MM-DD)'
+        required: true
+        default: '2025-09-08'
+permissions: { issues: write, contents: read }
+jobs:
+  create_milestones:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const start = new Date(core.getInput('start_date'));
+            if (isNaN(start)) { core.setFailed('Invalid start_date'); return; }
+            for (let i=1; i<=16; i++) {
+              const ws = new Date(start.getTime() + (i-1)*7*24*3600*1000);
+              const we = new Date(ws.getTime()+6*24*3600*1000);
+              const title = `Week ${i}`;
+              const mls = await github.rest.issues.listMilestones({owner: context.repo.owner, repo: context.repo.repo, state:'open'});
+              const ex = mls.data.find(m=>m.title===title);
+              if (ex) await github.rest.issues.updateMilestone({owner: context.repo.owner, repo: context.repo.repo, milestone_number: ex.number, title, state:'open', due_on: we.toISOString()});
+              else await github.rest.issues.createMilestone({owner: context.repo.owner, repo: context.repo.repo, title, due_on: we.toISOString()});
+            }

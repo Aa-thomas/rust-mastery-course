@@ -1,0 +1,43 @@
+name: lab01_enhanced_guessing_game — Submission
+description: Submit work with rubric checklist & links.
+title: "[lab01_enhanced_guessing_game] Submission: <short summary>"
+labels: [lab, submission]
+body:
+  - type: input
+    id: repo_link
+    attributes:
+      label: Repo/commit link
+      placeholder: https://github.com/you/repo/commit/<sha>
+  - type: input
+    id: crate_path
+    attributes:
+      label: Crate path
+      placeholder: labs/lab01_enhanced_guessing_game
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What you built; key decisions; edge cases.
+    validations:
+      required: true
+  - type: textarea
+    id: tests
+    attributes:
+      label: Testing
+      description: Unit/integration/property tests and how to run.
+  - type: textarea
+    id: bench
+    attributes:
+      label: Benchmarks
+      description: criterion results, p50/p95/p99, observations.
+  - type: checkboxes
+    id: rubric
+    attributes:
+      label: Rubric checklist
+      options:
+        - label: Functionality complete
+        - label: Error handling (no panics)
+        - label: Docs & README updated
+        - label: Tests passing (CI green)

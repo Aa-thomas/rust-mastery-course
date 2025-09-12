@@ -1,0 +1,9 @@
+[package]
+name = "lab10_order_book_effective_rust_refactor"
+version = "0.1.0"
+edition = "2021"
+description = "Lab 10 — Order Book Refactor w/ Effective Rust (20 pts)"
+license = "MIT-0"
+
+[dependencies]
+anyhow = "1"

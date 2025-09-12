@@ -1,0 +1,15 @@
+[
+  {"name":"lab","color":"0e8a16","description":"Lab work"},
+  {"name":"project","color":"0052cc","description":"Project work"},
+  {"name":"capstone","color":"5319e7","description":"Capstone work"},
+  {"name":"reading","color":"c2e0c6","description":"Reading/notes"},
+  {"name":"benchmark","color":"fbca04","description":"Performance/benchmarks"},
+  {"name":"bug","color":"d73a4a","description":"Something is not working"},
+  {"name":"enhancement","color":"a2eeef","description":"Feature request"},
+  {"name":"help wanted","color":"008672","description":"Extra attention needed"},
+  {"name":"good first issue","color":"7057ff","description":"Good for newcomers"},
+  {"name":"priority: high","color":"b60205","description":"Time-sensitive"},
+  {"name":"priority: medium","color":"d93f0b","description":"Important"},
+  {"name":"priority: low","color":"f9d0c4","description":"Nice to have"},
+  {"name":"submission","color":"0e8a16","description":"Submission issue"}
+]

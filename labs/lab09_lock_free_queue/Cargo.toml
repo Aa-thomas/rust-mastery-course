@@ -1,0 +1,9 @@
+[package]
+name = "lab09_lock_free_queue"
+version = "0.1.0"
+edition = "2021"
+description = "Lab 9 — Lock-Free Queue (25 pts)"
+license = "MIT-0"
+
+[dependencies]
+anyhow = "1"

@@ -1,0 +1,9 @@
+[package]
+name = "proj1_game_extension"
+version = "0.1.0"
+edition = "2021"
+description = "Project 1 — Game Extension (30 pts)"
+license = "MIT-0"
+
+[dependencies]
+anyhow = "1"

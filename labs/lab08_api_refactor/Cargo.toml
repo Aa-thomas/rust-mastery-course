@@ -1,0 +1,9 @@
+[package]
+name = "lab08_api_refactor"
+version = "0.1.0"
+edition = "2021"
+description = "Lab 8 — API Refactor (20 pts)"
+license = "MIT-0"
+
+[dependencies]
+anyhow = "1"

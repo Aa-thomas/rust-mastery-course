@@ -1,0 +1,9 @@
+[package]
+name = "lab06_order_state_machine"
+version = "0.1.0"
+edition = "2021"
+description = "Lab 6 — Order State Machine (25 pts)"
+license = "MIT-0"
+
+[dependencies]
+anyhow = "1"

@@ -1,0 +1,9 @@
+[package]
+name = "proj2_second_game"
+version = "0.1.0"
+edition = "2021"
+description = "Project 2 — Second Game (30 pts)"
+license = "MIT-0"
+
+[dependencies]
+anyhow = "1"

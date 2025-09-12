@@ -1,0 +1,20 @@
+[workspace]
+members = [
+  "capstone/axum_gateway",
+  "capstone/capstone_trading_terminal",
+  "labs/lab01_enhanced_guessing_game",
+  "labs/lab02_config_parser_cli",
+  "labs/lab03_in_memory_kv_store",
+  "labs/lab04_binary_file_inspector",
+  "labs/lab05_concurrent_http_fetcher",
+  "labs/lab06_order_state_machine",
+  "labs/lab07_multithreaded_chat_server",
+  "labs/lab08_api_refactor",
+  "labs/lab09_lock_free_queue",
+  "labs/lab10_order_book_effective_rust_refactor",
+  "labs/lab11_benchmark_locks_vs_lockfree",
+  "labs/lab12_capstone_scaffolding",
+  "projects/proj1_game_extension",
+  "projects/proj2_second_game",
+  "projects/proj3_mini_order_book",
+]

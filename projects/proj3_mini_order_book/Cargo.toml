@@ -1,0 +1,9 @@
+[package]
+name = "proj3_mini_order_book"
+version = "0.1.0"
+edition = "2021"
+description = "Project 3 — Mini Order Book (35 pts)"
+license = "MIT-0"
+
+[dependencies]
+anyhow = "1"

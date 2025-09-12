@@ -1,0 +1,27 @@
+name: Setup Kanban & Labels
+on: workflow_dispatch
+permissions: { contents: write, issues: write, projects: write }
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = require('fs').readFileSync('.github/labels.json','utf8'); 
+            const arr = JSON.parse(labels);
+            for (const l of arr) {
+              try {
+                await github.rest.issues.getLabel({owner: context.repo.owner, repo: context.repo.repo, name: l.name});
+                await github.rest.issues.updateLabel({owner: context.repo.owner, repo: context.repo.repo, name: l.name, new_name: l.name, color: l.color, description: l.description});
+              } catch (e) {
+                await github.rest.issues.createLabel({owner: context.repo.owner, repo: context.repo.repo, name: l.name, color: l.color, description: l.description});
+              }
+            }
+            const owner = context.repo.owner, repo = context.repo.repo;
+            let project = (await github.rest.projects.listForRepo({owner, repo})).data.find(p=>p.name==='Course Kanban');
+            if (!project) project = (await github.rest.projects.createForRepo({owner, repo, name:'Course Kanban', body:'Backlog → In Progress → Review → Done'})).data;
+            const desired = ['Backlog','In Progress','Review','Done'];
+            const cols = await github.rest.projects.listColumns({project_id: project.id});
+            const have = new Set(cols.data.map(c=>c.name));
+            for (const name of desired) if (!have.has(name)) await github.rest.projects.createColumn({project_id: project.id, name});

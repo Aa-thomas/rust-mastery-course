@@ -1,0 +1,20 @@
+name: Auto-label PRs by changed paths
+on: { pull_request: { types: [opened, synchronize, reopened] } }
+permissions: { contents: read, pull-requests: write, issues: write }
+jobs:
+  label_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const {owner, repo} = context.repo; const number = context.payload.pull_request.number;
+            const files = await github.paginate(github.rest.pulls.listFiles, {owner, repo, pull_number: number});
+            const add = new Set();
+            for (const f of files) {
+              if (f.filename.startsWith('labs/')) add.add('lab');
+              if (f.filename.startsWith('projects/')) add.add('project');
+              if (f.filename.startsWith('capstone/')) add.add('capstone');
+              if (f.filename.includes('BENCH.md') || f.filename.includes('criterion')) add.add('benchmark');
+            }
+            if (add.size) await github.rest.issues.addLabels({ owner, repo, issue_number: number, labels: Array.from(add) });

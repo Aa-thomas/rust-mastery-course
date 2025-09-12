@@ -1,0 +1,9 @@
+[package]
+name = "lab11_benchmark_locks_vs_lockfree"
+version = "0.1.0"
+edition = "2021"
+description = "Lab 11 — Benchmark: Locks vs Lock-Free (25 pts)"
+license = "MIT-0"
+
+[dependencies]
+anyhow = "1"

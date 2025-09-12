@@ -1,0 +1,9 @@
+[package]
+name = "lab04_binary_file_inspector"
+version = "0.1.0"
+edition = "2021"
+description = "Lab 4 — Binary File Inspector (20 pts)"
+license = "MIT-0"
+
+[dependencies]
+anyhow = "1"

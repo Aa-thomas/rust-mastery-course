@@ -1,0 +1,9 @@
+[package]
+name = "lab03_in_memory_kv_store"
+version = "0.1.0"
+edition = "2021"
+description = "Lab 3 — In-Memory KV Store (20 pts)"
+license = "MIT-0"
+
+[dependencies]
+anyhow = "1"

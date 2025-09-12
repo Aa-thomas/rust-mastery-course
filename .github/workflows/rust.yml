@@ -1,0 +1,12 @@
+name: Rust CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo build --workspace --all-targets --locked
+      - run: cargo fmt --all -- --check
+      - run: cargo clippy --workspace --all-targets || true
+      - run: cargo test --workspace --all-features

@@ -1,0 +1,9 @@
+[package]
+name = "lab05_concurrent_http_fetcher"
+version = "0.1.0"
+edition = "2021"
+description = "Lab 5 — Concurrent HTTP Fetcher (25 pts)"
+license = "MIT-0"
+
+[dependencies]
+anyhow = "1"

@@ -1,0 +1,9 @@
+[package]
+name = "lab12_capstone_scaffolding"
+version = "0.1.0"
+edition = "2021"
+description = "Lab 12 — Capstone Scaffolding (25 pts)"
+license = "MIT-0"
+
+[dependencies]
+anyhow = "1"

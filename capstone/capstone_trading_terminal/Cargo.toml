@@ -1,0 +1,9 @@
+[package]
+name = "capstone_trading_terminal"
+version = "0.1.0"
+edition = "2021"
+description = "Capstone — Trading Terminal Prototype (50 pts)"
+license = "MIT-0"
+
+[dependencies]
+anyhow = "1"

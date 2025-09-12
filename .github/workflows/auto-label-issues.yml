@@ -1,0 +1,24 @@
+name: Auto-label issues (by slug) & assign milestone
+on: { issues: { types: [opened, edited] } }
+permissions: { issues: write, contents: read }
+jobs:
+  label_and_milestone:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const {owner, repo} = context.repo; const title = context.payload.issue.title||'';
+            const m = title.match(/^\[(.+?)\]/); if (!m) return; const slug = m[1];
+            const labels=[];
+            if (slug.startsWith('lab')) labels.push('lab','submission');
+            else if (slug.startsWith('proj')) labels.push('project','submission');
+            else if (slug.includes('capstone')) labels.push('capstone','submission');
+            if (labels.length) await github.rest.issues.addLabels({ owner, repo, issue_number: context.payload.issue.number, labels });
+            let weekNumber=null; const wm = slug.match(/lab(\d\d)/) || slug.match(/proj(\d+)/) || slug.match(/week[-_ ]?(\d+)/i);
+            if (wm) { weekNumber = parseInt(wm[1],10); if (slug.startsWith('proj')) { const map={1:4,2:8,3:12}; weekNumber = map[weekNumber]||weekNumber; } } else if (slug.includes('capstone')) weekNumber=16;
+            if (weekNumber) {
+              const mls = await github.rest.issues.listMilestones({ owner, repo, state:'open' });
+              const ms = mls.data.find(m=>m.title===`Week ${weekNumber}`);
+              if (ms) await github.rest.issues.update({ owner, repo, issue_number: context.payload.issue.number, milestone: ms.number });
+            }

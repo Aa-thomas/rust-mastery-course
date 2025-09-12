@@ -1,0 +1,24 @@
+name: Auto-triage submission issues to Kanban
+on:
+  issues:
+    types: [opened, labeled]
+permissions: { contents: read, issues: write, projects: write }
+jobs:
+  add_to_kanban:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const {owner, repo} = context.repo; const issue = context.payload.issue; const action = context.payload.action;
+            let isSubmission = action==='opened' ? (issue.labels||[]).some(l=>(l.name||l)==='submission') : (context.payload.label && context.payload.label.name==='submission');
+            if (!isSubmission) return;
+            const projects = await github.rest.projects.listForRepo({ owner, repo }); let project = projects.data.find(p=>p.name==='Course Kanban');
+            if (!project) { core.setFailed('Run Setup Kanban first.'); return; }
+            const columns = await github.rest.projects.listColumns({ project_id: project.id });
+            const backlog = columns.data.find(c=>c.name==='Backlog') || columns.data[0];
+            for (const col of columns.data) {
+              const cards = await github.rest.projects.listCards({ column_id: col.id, per_page: 100 });
+              if (cards.data.find(cd => cd.content_url && cd.content_url.endsWith(`/issues/${issue.number}`))) return;
+            }
+            await github.rest.projects.createCard({ column_id: backlog.id, content_id: issue.id, content_type: 'Issue' });

@@ -1,0 +1,9 @@
+[package]
+name = "lab07_multithreaded_chat_server"
+version = "0.1.0"
+edition = "2021"
+description = "Lab 7 — Multi-Threaded Chat Server (30 pts)"
+license = "MIT-0"
+
+[dependencies]
+anyhow = "1"
