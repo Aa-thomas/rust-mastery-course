@@ -1,4 +1,5 @@
 [workspace]
+resolver = "2"
 members = [
   "capstone/axum_gateway",
   "capstone/capstone_trading_terminal",
