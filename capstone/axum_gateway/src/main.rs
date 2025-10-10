@@ -1,3 +1,7 @@
+fn main() {
+    println!("Hello from this scaffold. Replace with your implementation.");
+}
+
 // use std::{collections::HashMap, net::SocketAddr, sync::{Arc, atomic::{AtomicU64, Ordering}}};
 // use axum::{routing::{get, post}, Router, response::IntoResponse, extract::{State, ws::{WebSocketUpgrade, Message, WebSocket}}, Json};
 // use tower_http::cors::{Any, CorsLayer};
