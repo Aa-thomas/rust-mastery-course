@@ -1,9 +1,0 @@
-[package]
-name = "lab01_enhanced_guessing_game"
-version = "0.1.0"
-edition = "2021"
-description = "Lab 1 — Enhanced Guessing Game (20 pts)"
-license = "MIT-0"
-
-[dependencies]
-anyhow = "1"
